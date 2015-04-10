@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Carto</title>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body ng-app="carto" ng-controller="PageCtrl">
+
+        <div class="menu">
+            <label for="selectLayer">Layer : </label>
+            <select name="selectLayer"  ng-model="currentLayer">
+                <option ng-repeat="layer in layers">{{layer.name}}</option>
+            </select>
+            <button name="button" ng-click="changeSource()">Change</button>
+        </div>
+
+        <stratis-carto class='max' width-markers="20" height-markers="30" icon-markers="img/mapMarker.png">
+            <stratis-marker-layer layer-name="{{layer.name}}" ng-repeat="layer in layers" icon-markers="{{layer.icon}}"
+                                  width-markers="{{layer.width}}">
+                <stratis-marker ng-if="layer.name == currentLayer" ng-repeat="marker in layer.markers"
+                                longitude="marker.longitude" latitude="marker.latitude"></stratis-marker>
+            </stratis-marker-layer>
+        </stratis-carto>
+
+
+        <script src="lib/angular/angular.js"></script>
+        <script src="lib/openlayers/OpenLayers.js"></script>
+        <script src="js/carto.js"></script>
+        <script src="js/controllers.js"></script>
+        <script src="js/services.js"></script>
+    </body>
+</html>

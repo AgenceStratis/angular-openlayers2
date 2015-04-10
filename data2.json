@@ -1,0 +1,25 @@
+[
+  {
+    "name": "green",
+    "markers": [
+      {"longitude": "1", "latitude": "1"},
+      {"longitude": "-24", "latitude": "20"},
+      {"longitude": "-50", "latitude": "43"},
+      {"longitude": "20.92", "latitude": "3"},
+      {"longitude": "-70.92", "latitude": "-10"}
+    ],
+    "icon":"img/mapMarkerGreen.png",
+    "width":"30"
+  },
+  {
+    "name": "grey",
+    "markers": [
+      {"longitude": "8.9280000", "latitude": "10.1242280"},
+      {"longitude": "50.9280000", "latitude": "7.1242280"},
+      {"longitude": "20.92", "latitude": "3"},
+      {"longitude": "-70.92", "latitude": "-10"}
+    ],
+    "icon":"img/mapMarkerGrey.png",
+    "width":"30"
+  }
+]

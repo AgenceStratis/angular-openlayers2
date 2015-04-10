@@ -1,0 +1,21 @@
+[
+  {
+    "name": "orange",
+    "markers": [
+      {"longitude": "5", "latitude": "43"},
+      {"longitude": "24", "latitude": "20"},
+      {"longitude": "34", "latitude": "43"},
+      {"longitude": "2.92", "latitude": "3"},
+      {"longitude": "-70.92", "latitude": "10"}
+    ]
+  },
+  {
+    "name": "pink",
+    "markers": [
+      {"longitude": "80.9280000", "latitude": "10.1242280"},
+      {"longitude": "50.9280000", "latitude": "70.1242280"}
+    ],
+    "icon":"img/mapMarker2.png",
+    "width":"30"
+  }
+]
