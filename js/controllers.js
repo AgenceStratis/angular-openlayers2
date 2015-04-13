@@ -25,8 +25,20 @@ angular.module("cartoControllers", ["cartoServices"])
         };
         $scope.changeSource();
 
+        $scope.test = true;
 
+        $scope.toggle = function(){
+            $scope.test = !$scope.test;
+        };
 
         $scope.currentLayer = "orange";
+
+        $scope.style = function(feature){
+            feature.style.label = feature.attributes.name;
+            feature.style.strokeColor="pink";
+            //feature.style.fontColor = "red";
+            //feature.style.labelXOffset = 10;
+            //feature.style.labelYOffset = -10;
+        }
     })
 ;

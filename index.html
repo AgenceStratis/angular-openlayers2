@@ -13,6 +13,7 @@
                 <option ng-repeat="layer in layers">{{layer.name}}</option>
             </select>
             <button name="button" ng-click="changeSource()">Change</button>
+            <button name="button" ng-click="toggle()">Toggle</button>
         </div>
 
         <stratis-carto class='max' width-markers="20" height-markers="30" icon-markers="img/mapMarker.png">
@@ -21,6 +22,11 @@
                 <stratis-marker ng-if="layer.name == currentLayer" ng-repeat="marker in layer.markers"
                                 longitude="marker.longitude" latitude="marker.latitude"></stratis-marker>
             </stratis-marker-layer>
+            <stratis-kml-layer>
+                <stratis-kml url="test_marker.kml"  ></stratis-kml>
+                <stratis-kml url="Test.kml"  ng-if="test"></stratis-kml>
+                <stratis-kml url="Trajet.kml" override-style-function="style"></stratis-kml>
+            </stratis-kml-layer>
         </stratis-carto>
 
 
