@@ -20,7 +20,7 @@
             <stratis-marker-layer layer-name="{{layer.name}}" ng-repeat="layer in layers" icon-markers="{{layer.icon}}"
                                   width-markers="{{layer.width}}">
                 <stratis-marker ng-if="layer.name == currentLayer" ng-repeat="marker in layer.markers"
-                                longitude="marker.longitude" latitude="marker.latitude"></stratis-marker>
+                                longitude="marker.longitude" latitude="marker.latitude" on-click="onClick" datas="marker"></stratis-marker>
             </stratis-marker-layer>
             <stratis-kml-layer>
                 <stratis-kml url="test_marker.kml"  ></stratis-kml>

@@ -83,8 +83,8 @@ angular.module("carto", ["cartoControllers"])
                 throw "One or more values are not defined (width : " + width + ", height : " + height + ", icon : " + iconPath + ")";
             }
             var sizeMarker = new OpenLayers.Size(width, height);
-            var offsetMarker = new OpenLayers.Pixel(-(sizeMarker.w / 2), -sizeMarker.h);
-            return new OpenLayers.Icon(iconPath, sizeMarker, offsetMarker);
+            var offsetMarker = function(sizeMarker){return new OpenLayers.Pixel(-(sizeMarker.w / 2), -sizeMarker.h)}; //Use a function in case of resize
+            return new OpenLayers.Icon(iconPath, sizeMarker,null, offsetMarker);
         };
 
         /**
@@ -98,7 +98,7 @@ angular.module("carto", ["cartoControllers"])
             var position = new OpenLayers.LonLat(longitude, latitude);
             var projection = position.transform($scope.projFrom, $scope.projTo);
 
-            var marker = new OpenLayers.Marker(projection, icon.clone())
+            var marker = new OpenLayers.Marker(projection, icon.clone());
             this.layer.addMarker(marker);
             return marker;
         };
@@ -166,15 +166,51 @@ angular.module("carto", ["cartoControllers"])
             require: "^stratisMarkerLayer",
             restrict: 'E',
             scope: {
+                /**
+                 * Width of the marker
+                 */
                 width: "=",
+
+                /**
+                 * Height of the marker
+                 */
                 height: "=",
+
+                /**
+                 * Longitude of the marker
+                 */
                 longitude: "=",
+
+                /**
+                 * Latitude of the marker
+                 */
                 latitude: "=",
-                icon: "@"
+
+                /**
+                 * Path to img icon
+                 */
+                icon: "@",
+
+                /**
+                 * Reference to click function
+                 * Click function should take two parameters : OpenLayer marker & datas
+                 */
+                onClick:"=",
+
+                /**
+                 * Datas accessible from events functions
+                 */
+                datas:"="
             },
             link: function ($scope, element, attrs, layerCtrl) {
                 var iconMarker = layerCtrl.createIconMarker($scope.width, $scope.height, $scope.icon);
                 var marker = layerCtrl.addMarker($scope.longitude, $scope.latitude, iconMarker);
+                if($scope.onClick){
+                    marker.events.register("click", marker, function(){
+                        $scope.onClick(this, $scope.datas);
+                    });
+                }
+
 
                 element.bind('$destroy', function () {
                     layerCtrl.removeMarker(marker);

@@ -2,11 +2,11 @@
   {
     "name": "green",
     "markers": [
-      {"longitude": "1", "latitude": "1"},
-      {"longitude": "-24", "latitude": "20"},
-      {"longitude": "-50", "latitude": "43"},
-      {"longitude": "20.92", "latitude": "3"},
-      {"longitude": "-70.92", "latitude": "-10"}
+      {"name":"A", "longitude": "1", "latitude": "1"},
+      {"name":"B","longitude": "-24", "latitude": "20"},
+      {"name":"C","longitude": "-50", "latitude": "43"},
+      {"name":"D","longitude": "20.92", "latitude": "3"},
+      {"name":"E","longitude": "-70.92", "latitude": "-10"}
     ],
     "icon":"img/mapMarkerGreen.png",
     "width":"30"

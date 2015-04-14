@@ -1,11 +1,5 @@
 angular.module("cartoControllers", ["cartoServices"])
     .controller("PageCtrl", function ($scope, $http) {
-        $scope.orange = [
-            {longitude: "5", latitude: "43"},
-            {longitude: "24", latitude: "20"},
-            {longitude: "34", latitude: "43"},
-            {longitude: "2.92", latitude: "3"}
-        ];
 
         $scope.newSource = true;
 
@@ -39,6 +33,11 @@ angular.module("cartoControllers", ["cartoServices"])
             //feature.style.fontColor = "red";
             //feature.style.labelXOffset = 10;
             //feature.style.labelYOffset = -10;
+        };
+
+        $scope.onClick = function(olMarker, datas){
+            angular.element(olMarker.icon.imageDiv).css("border", "1px black solid")
+            angular.element(olMarker.icon.imageDiv).css("margin", "-1px")
         }
     })
 ;
