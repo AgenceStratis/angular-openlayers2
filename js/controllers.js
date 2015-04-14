@@ -30,14 +30,20 @@ angular.module("cartoControllers", ["cartoServices"])
         $scope.style = function(feature){
             feature.style.label = feature.attributes.name;
             feature.style.strokeColor="pink";
-            //feature.style.fontColor = "red";
-            //feature.style.labelXOffset = 10;
-            //feature.style.labelYOffset = -10;
         };
 
-        $scope.onClick = function(olMarker, datas){
-            angular.element(olMarker.icon.imageDiv).css("border", "1px black solid")
-            angular.element(olMarker.icon.imageDiv).css("margin", "-1px")
+        $scope.onClick = function(olMarker, datas, markers){
+            for (var marker in markers) {
+                angular.element(markers[marker].icon.imageDiv).removeClass("selected")
+            }
+            angular.element(olMarker.icon.imageDiv).addClass("selected");
+            popup = new OpenLayers.Popup("chicken",
+                olMarker.lonlat,
+                new OpenLayers.Size(200,200),
+                datas.name,
+                true);
+            olMarker.map.addPopup(popup, true);
+
         }
     })
 ;

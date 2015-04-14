@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="initial-scale=1 width=device-width">
         <title>Carto</title>
         <link rel="stylesheet" href="css/style.css">
     </head>
@@ -22,11 +23,11 @@
                 <stratis-marker ng-if="layer.name == currentLayer" ng-repeat="marker in layer.markers"
                                 longitude="marker.longitude" latitude="marker.latitude" on-click="onClick" datas="marker"></stratis-marker>
             </stratis-marker-layer>
-            <stratis-kml-layer>
-                <stratis-kml url="test_marker.kml"  ></stratis-kml>
-                <stratis-kml url="Test.kml"  ng-if="test"></stratis-kml>
-                <stratis-kml url="Trajet.kml" override-style-function="style"></stratis-kml>
-            </stratis-kml-layer>
+            <!--<stratis-kml-layer>-->
+                <!--<stratis-kml url="test_marker.kml"  ></stratis-kml>-->
+                <!--<stratis-kml url="Test.kml"  ng-if="test"></stratis-kml>-->
+                <!--<stratis-kml url="Trajet.kml" override-style-function="style"></stratis-kml>-->
+            <!--</stratis-kml-layer>-->
         </stratis-carto>
 
 
