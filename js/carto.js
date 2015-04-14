@@ -206,11 +206,17 @@ angular.module("carto", ["cartoControllers"])
                 var iconMarker = layerCtrl.createIconMarker($scope.width, $scope.height, $scope.icon);
                 var marker = layerCtrl.addMarker($scope.longitude, $scope.latitude, iconMarker);
                 if($scope.onClick){
+
+                    //Desktop
                     marker.events.register("click", marker, function(){
-                        $scope.onClick(this, $scope.datas);
+                        $scope.onClick(this, $scope.datas, layerCtrl.layer.markers);
+                    });
+
+                    //Mobile
+                    marker.events.register("touchstart", marker, function(){
+                        $scope.onClick(this, $scope.datas, layerCtrl.layer.markers);
                     });
                 }
-
 
                 element.bind('$destroy', function () {
                     layerCtrl.removeMarker(marker);

@@ -2,11 +2,32 @@
   {
     "name": "green",
     "markers": [
-      {"name":"A", "longitude": "1", "latitude": "1"},
-      {"name":"B","longitude": "-24", "latitude": "20"},
-      {"name":"C","longitude": "-50", "latitude": "43"},
-      {"name":"D","longitude": "20.92", "latitude": "3"},
-      {"name":"E","longitude": "-70.92", "latitude": "-10"}
+      {"name":"Ville A", "longitude": "1", "latitude": "1"},
+      {"name":"Ville B","longitude": "-24", "latitude": "20"},
+      {"name":"Ville C","longitude": "-50", "latitude": "43"},
+      {"name":"Ville D","longitude": "20.92", "latitude": "3"},
+      {"name":"Ville E","longitude": "-70.92", "latitude": "-10"},
+      {"name":"Ville F","longitude": "4", "latitude": "-43"},
+      {"name":"Ville G","longitude": "8", "latitude": "2"},
+      {"name":"Ville H","longitude": "15", "latitude": "-4"},
+      {"name":"Ville I","longitude": "16", "latitude": "8"},
+      {"name":"Ville J","longitude": "23", "latitude": "15"},
+      {"name":"Ville K","longitude": "42", "latitude": "-16"},
+      {"name":"Ville L","longitude": "-4", "latitude": "23"},
+      {"name":"Ville M","longitude": "-8", "latitude": "-42"},
+      {"name":"Ville N","longitude": "-15", "latitude": "2"},
+      {"name":"Ville O","longitude": "-16", "latitude": "70"},
+      {"name":"Ville P","longitude": "75", "latitude": "43"},
+      {"name":"Ville Q","longitude": "42", "latitude": "-2"},
+      {"name":"Ville R","longitude": "23", "latitude": "-70"},
+      {"name":"Ville S","longitude": "22", "latitude": "-22"},
+      {"name":"Ville T","longitude": "60", "latitude": "-54"},
+      {"name":"Ville U","longitude": "33", "latitude": "0"},
+      {"name":"Ville V","longitude": "2", "latitude": "10"},
+      {"name":"Ville X","longitude": "76", "latitude": "-76"},
+      {"name":"Ville Y","longitude": "69", "latitude": "4"},
+      {"name":"Ville Z","longitude": "-16", "latitude": "70"}
+
     ],
     "icon":"img/mapMarkerGreen.png",
     "width":"30"
@@ -14,10 +35,10 @@
   {
     "name": "grey",
     "markers": [
-      {"longitude": "8.9280000", "latitude": "10.1242280"},
-      {"longitude": "50.9280000", "latitude": "7.1242280"},
-      {"longitude": "20.92", "latitude": "3"},
-      {"longitude": "-70.92", "latitude": "-10"}
+      {"name":"Ville E","longitude": "8.9280000", "latitude": "10.1242280"},
+      {"name":"Ville E","longitude": "50.9280000", "latitude": "7.1242280"},
+      {"name":"Ville E","longitude": "20.92", "latitude": "3"},
+      {"name":"Ville E","longitude": "-70.92", "latitude": "-10"}
     ],
     "icon":"img/mapMarkerGrey.png",
     "width":"30"
