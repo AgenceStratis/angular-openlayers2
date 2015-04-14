@@ -1,0 +1,30 @@
+{
+  "name": "angular-openlayers2",
+  "version": "0.01",
+  "authors": [
+    "Romain MOREAU <moreau.romain83@gmail.com>"
+  ],
+  "description": "AngularJS application based on OpenLayers 2.",
+  "main": "index.html",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "stratis",
+    "openlayers",
+    "angular"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "lib/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "openlayers": "*",
+    "angular": "~1.2"
+  }
+}
