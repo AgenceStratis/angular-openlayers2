@@ -7,30 +7,38 @@
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body ng-app="carto" ng-controller="PageCtrl">
+        <div class="container">
+            <div class="menu">
+                <label for="selectLayer">Layer : </label>
+                <select name="selectLayer" ng-model="currentLayer" ng-change="close()">
+                    <option ng-repeat="layer in layers">{{layer.name}}</option>
+                </select>
+                <button name="button" ng-click="changeSource()">Change</button>
+                <!--<button name="button2" ng-click="toggle()">Toggle</button>-->
+            </div>
 
-        <div class="menu">
-            <label for="selectLayer">Layer : </label>
-            <select name="selectLayer"  ng-model="currentLayer">
-                <option ng-repeat="layer in layers">{{layer.name}}</option>
-            </select>
-            <button name="button" ng-click="changeSource()">Change</button>
-            <button name="button" ng-click="toggle()">Toggle</button>
-        </div>
+            <div class="content" id="content">
+                <button class="closeButton" name="button" ng-click="close()">X</button>
+                <span>Name : {{currentDatas.name}}</span>
+            </div>
 
-        <stratis-carto class='max' width-markers="20" height-markers="30" icon-markers="img/mapMarker.png">
-            <stratis-marker-layer layer-name="{{layer.name}}" ng-repeat="layer in layers" icon-markers="{{layer.icon}}"
-                                  width-markers="{{layer.width}}">
-                <stratis-marker ng-if="layer.name == currentLayer" ng-repeat="marker in layer.markers"
-                                longitude="marker.longitude" latitude="marker.latitude" on-click="onClick" datas="marker"></stratis-marker>
-            </stratis-marker-layer>
-            <!--<stratis-kml-layer>-->
+            <stratis-carto class='max' width-markers="20" height-markers="30" icon-markers="img/mapMarker.png">
+                <stratis-marker-layer layer-name="{{layer.name}}" ng-repeat="layer in layers"
+                                      icon-markers="{{layer.icon}}"
+                                      width-markers="{{layer.width}}">
+                    <stratis-marker ng-if="layer.name == currentLayer" ng-repeat="marker in layer.markers"
+                                    longitude="marker.longitude" latitude="marker.latitude" on-click="onClick"
+                                    datas="marker"></stratis-marker>
+                </stratis-marker-layer>
+                <!--<stratis-kml-layer>-->
                 <!--<stratis-kml url="test_marker.kml"  ></stratis-kml>-->
                 <!--<stratis-kml url="Test.kml"  ng-if="test"></stratis-kml>-->
                 <!--<stratis-kml url="Trajet.kml" override-style-function="style"></stratis-kml>-->
-            <!--</stratis-kml-layer>-->
-        </stratis-carto>
+                <!--</stratis-kml-layer>-->
+            </stratis-carto>
 
 
+        </div>
         <script src="lib/angular/angular.js"></script>
         <script src="lib/openlayers/lib/OpenLayers.js"></script>
         <script src="js/carto.js"></script>

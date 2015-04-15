@@ -3,12 +3,69 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
+  overflow: hidden;
+}
+
+.container{
+  position:absolute;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
 
 .max {
   width: 100%;
   height: 100%;
 }
+
+.closeButton{
+  position:absolute;
+  top:0;
+  right:0;
+  background:red;
+  color:white;
+}
+
+.content{
+  top:0;
+  position: absolute;
+  right: -200px;
+  width: 200px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.5);
+  z-index: 1000;
+}
+
+@-webkit-keyframes show-animation {
+  from {
+    right: -200px;
+  }
+  to {
+    right: 0;
+  }
+}
+
+/* The element to apply the animation to */
+.show {
+  -webkit-animation-name: show-animation;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes hide-animation {
+  from {right: 0;}
+  to {right: -200px;}
+}
+
+/* The element to apply the animation to */
+.hide {
+  -webkit-animation-name: hide-animation;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-fill-mode: forwards;
+}
+
 
 .menu {
   position: absolute;
