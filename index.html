@@ -14,27 +14,27 @@
                     <option ng-repeat="layer in layers">{{layer.name}}</option>
                 </select>
                 <button name="button" ng-click="changeSource()">Change</button>
-                <!--<button name="button2" ng-click="toggle()">Toggle</button>-->
             </div>
 
             <div class="content" id="content">
                 <button class="closeButton" name="button" ng-click="close()">X</button>
-                <span>Name : {{currentDatas.name}}</span>
+                <div id="content-container">
+
+                </div>
             </div>
 
             <stratis-carto class='max' width-markers="20" height-markers="30" icon-markers="img/mapMarker.png">
                 <stratis-marker-layer layer-name="{{layer.name}}" ng-repeat="layer in layers"
                                       icon-markers="{{layer.icon}}"
                                       width-markers="{{layer.width}}">
-                    <stratis-marker ng-if="layer.name == currentLayer" ng-repeat="marker in layer.markers"
+
+                    <stratis-marker ng-repeat="marker in layer.markers"
                                     longitude="marker.longitude" latitude="marker.latitude" on-click="onClick"
-                                    datas="marker"></stratis-marker>
+                                    datas="marker" selectable="true">
+                    </stratis-marker>
+
                 </stratis-marker-layer>
-                <!--<stratis-kml-layer>-->
-                <!--<stratis-kml url="test_marker.kml"  ></stratis-kml>-->
-                <!--<stratis-kml url="Test.kml"  ng-if="test"></stratis-kml>-->
-                <!--<stratis-kml url="Trajet.kml" override-style-function="style"></stratis-kml>-->
-                <!--</stratis-kml-layer>-->
+
             </stratis-carto>
 
 

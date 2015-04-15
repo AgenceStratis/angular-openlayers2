@@ -32,6 +32,9 @@ angular.module("carto", ["cartoControllers"])
             return layer;
         };
 
+        this.resetZoom = function(){
+            this.map.zoomToMaxExtent();
+        }
 
     })
 
@@ -108,6 +111,9 @@ angular.module("carto", ["cartoControllers"])
          */
         this.removeMarker = function (marker) {
             this.layer.removeMarker(marker);
+            if(this.layer.map){
+                this.layer.map.zoomToMaxExtent();
+            }
         }
     })
 
@@ -156,6 +162,7 @@ angular.module("carto", ["cartoControllers"])
 
                     element.bind('$destroy', function () {
                         cartoCtrl.map.removeLayer(layerCtrl.layer)
+                        cartoCtrl.resetZoom();
                     });
                 }
             }
@@ -193,29 +200,50 @@ angular.module("carto", ["cartoControllers"])
 
                 /**
                  * Reference to click function
-                 * Click function should take two parameters : OpenLayer marker & datas
+                 * Click function should take four parameters : event, OpenLayer marker, datas & all markers on the layer
                  */
                 onClick:"=",
 
                 /**
                  * Datas accessible from events functions
                  */
-                datas:"="
+                datas:"=",
+
+                /**
+                 * Determine if class selected must be add on marker when click and touch event fired
+                 */
+                selectable:"="
             },
             link: function ($scope, element, attrs, layerCtrl) {
                 var iconMarker = layerCtrl.createIconMarker($scope.width, $scope.height, $scope.icon);
                 var marker = layerCtrl.addMarker($scope.longitude, $scope.latitude, iconMarker);
                 if($scope.onClick){
-
                     //Desktop
-                    marker.events.register("click", marker, function(){
-                        $scope.onClick(this, $scope.datas, layerCtrl.layer.markers);
+                    marker.events.register("click", marker, function(event){
+                        $scope.onClick(event, this, $scope.datas, layerCtrl.layer.markers);
                     });
 
                     //Mobile
-                    marker.events.register("touchstart", marker, function(){
-                        $scope.onClick(this, $scope.datas, layerCtrl.layer.markers);
+                    marker.events.register("touchstart", marker, function(event){
+                        $scope.onClick(event, this, $scope.datas, layerCtrl.layer.markers);
                     });
+                }
+                if($scope.selectable){
+                    var markers = layerCtrl.layer.markers;
+
+                    function select(){
+                        for (var index in markers) {
+                            angular.element(markers[index].icon.imageDiv).removeClass("selected")
+                        }
+
+                        angular.element(marker.icon.imageDiv).addClass("selected");
+                    }
+
+                    //Desktop
+                    marker.events.register("click", marker, select);
+
+                    //Mobile
+                    marker.events.register("touchstart", marker, select);
                 }
 
                 element.bind('$destroy', function () {
@@ -245,7 +273,6 @@ angular.module("carto", ["cartoControllers"])
          * Add KML on the map from URL
          * @param kmlUrl
          * @param functionStyle
-         * @returns {deferred.promise|{then, catch, finally}|l.promise}
          */
         this.addKML = function (kmlUrl, functionStyle) {
             var deferred = $q.defer();
@@ -290,7 +317,7 @@ angular.module("carto", ["cartoControllers"])
 
     })
     .directive("stratisKmlLayer", function () {
-        var template = "<div ng-transclude></div>"
+        var template = "<div ng-transclude></div>";
         return {
             restrict: 'E',
             require: ['^stratisCarto', 'stratisKmlLayer'],

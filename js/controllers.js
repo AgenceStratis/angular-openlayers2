@@ -43,9 +43,9 @@ angular.module("cartoControllers", ["cartoServices"])
                 element.removeClass("show");
                 element.addClass("hide");
             }
-            setTimeout(1, function(){
+            setTimeout(function(){
                 $scope.currentDatas = "";
-            });
+            }, 100);
 
         };
 
@@ -66,14 +66,29 @@ angular.module("cartoControllers", ["cartoServices"])
 
         $scope.currentDatas = "";
 
-        $scope.onClick = function (olMarker, datas, markers) {
-            for (var marker in markers) {
-                angular.element(markers[marker].icon.imageDiv).removeClass("selected")
+        $scope.onClick = function (event, olMarker, datas, markers) {
+            var map = olMarker.map;
+            map.panTo(olMarker.lonlat);
+            var zoom = 4;
+            if(map.getZoom() < zoom){
+                setTimeout(function(){
+                    map.zoomTo(zoom)
+                }, 400);
             }
-            angular.element(olMarker.icon.imageDiv).addClass("selected");
-            $scope.currentDatas = datas;
-            $scope.$apply(); //Called from outside of Angular, so whe must explictly called $apply to update scope
-            $scope.open();
+            $http.get("http://192.168.83.101:8888/carto-chateauroux/templates/test.php?id="+datas.id).then(
+                function(result){
+                    var element = angular.element(document.getElementById("content-container"));
+                    element.html(result.data);
+                    $scope.currentDatas = datas;
+
+                    //$scope.$apply(); //Called from outside of Angular, so whe must explictly called $apply to update scope
+                    $scope.open();
+                }, function(error){
+                    console.log(error);
+                }
+            );
+
+
         };
 
         $scope.changeSource();
